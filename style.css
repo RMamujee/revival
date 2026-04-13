@@ -504,9 +504,9 @@ button { cursor: pointer; font-family: inherit; }
     position: relative;
     width: clamp(340px, 56vw, 720px);   /* wider for the front+back landscape image */
     margin: -16px 0 -10px;
-    background-color: #1B1510;   /* ← explicit dark earth: white × this = invisible */
+    background-color: transparent;
     animation: shirtReveal 1.4s var(--ease-expo) 0.9s both;
-    /* No will-change — would create compositing layer & break blend */
+
 }
 
 @keyframes shirtReveal {
@@ -519,8 +519,8 @@ button { cursor: pointer; font-family: inherit; }
     height: auto;
     position: relative;
     z-index: 2;
-    mix-blend-mode: multiply;   /* white → #1B1510 (invisible); black stays black */
-    /* NO filter, NO will-change */
+
+
     animation: shirtFloat 7s ease-in-out 2.3s infinite;
 }
 
@@ -829,7 +829,7 @@ button { cursor: pointer; font-family: inherit; }
     justify-content: center;
     padding: 100px 60px;
     border-right: 1px solid rgba(196,146,53,0.1);
-    background-color: #141009;   /* explicit dark — required for multiply blend */
+    background-color: var(--bg);
 }
 
 .product-image-wrapper {
@@ -839,11 +839,11 @@ button { cursor: pointer; font-family: inherit; }
     transition: transform .6s var(--ease-out);
 }
 
-/* mix-blend-mode: multiply — same white-removal trick as hero shirt */
+
 .product-img {
     width: 100%; height: auto;
-    mix-blend-mode: multiply;
-    /* No filter — would break blend mode */
+
+
     position: relative; z-index: 2;
     transition: transform .6s var(--ease-out);
 }
