@@ -12,6 +12,316 @@
 </head>
 <body>
 
+    <!-- ============================================================
+         ANTIQUE MAP BACKGROUND (fixed, behind everything)
+    ============================================================ -->
+    <div class="map-bg" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+            <defs>
+                <clipPath id="mapclip"><rect width="1440" height="900"/></clipPath>
+            </defs>
+
+            <!-- ── LATITUDE / LONGITUDE GRID ── -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.5" opacity="0.35">
+                <!-- Parallels (horizontal) -->
+                <line x1="0" y1="75"  x2="1440" y2="75"/>
+                <line x1="0" y1="150" x2="1440" y2="150"/>
+                <line x1="0" y1="225" x2="1440" y2="225"/>
+                <line x1="0" y1="300" x2="1440" y2="300"/>
+                <line x1="0" y1="375" x2="1440" y2="375"/>
+                <line x1="0" y1="450" x2="1440" y2="450"/>
+                <line x1="0" y1="525" x2="1440" y2="525"/>
+                <line x1="0" y1="600" x2="1440" y2="600"/>
+                <line x1="0" y1="675" x2="1440" y2="675"/>
+                <line x1="0" y1="750" x2="1440" y2="750"/>
+                <line x1="0" y1="825" x2="1440" y2="825"/>
+                <!-- Meridians (vertical) -->
+                <line x1="120"  y1="0" x2="120"  y2="900"/>
+                <line x1="240"  y1="0" x2="240"  y2="900"/>
+                <line x1="360"  y1="0" x2="360"  y2="900"/>
+                <line x1="480"  y1="0" x2="480"  y2="900"/>
+                <line x1="600"  y1="0" x2="600"  y2="900"/>
+                <line x1="720"  y1="0" x2="720"  y2="900"/>
+                <line x1="840"  y1="0" x2="840"  y2="900"/>
+                <line x1="960"  y1="0" x2="960"  y2="900"/>
+                <line x1="1080" y1="0" x2="1080" y2="900"/>
+                <line x1="1200" y1="0" x2="1200" y2="900"/>
+                <line x1="1320" y1="0" x2="1320" y2="900"/>
+            </g>
+
+            <!-- Fine sub-grid -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.25" opacity="0.15">
+                <line x1="0" y1="37.5"  x2="1440" y2="37.5"/>
+                <line x1="0" y1="112.5" x2="1440" y2="112.5"/>
+                <line x1="0" y1="187.5" x2="1440" y2="187.5"/>
+                <line x1="0" y1="262.5" x2="1440" y2="262.5"/>
+                <line x1="0" y1="337.5" x2="1440" y2="337.5"/>
+                <line x1="0" y1="412.5" x2="1440" y2="412.5"/>
+                <line x1="0" y1="487.5" x2="1440" y2="487.5"/>
+                <line x1="0" y1="562.5" x2="1440" y2="562.5"/>
+                <line x1="0" y1="637.5" x2="1440" y2="637.5"/>
+                <line x1="0" y1="712.5" x2="1440" y2="712.5"/>
+                <line x1="0" y1="787.5" x2="1440" y2="787.5"/>
+                <line x1="0" y1="862.5" x2="1440" y2="862.5"/>
+                <line x1="60"   y1="0" x2="60"   y2="900"/>
+                <line x1="180"  y1="0" x2="180"  y2="900"/>
+                <line x1="300"  y1="0" x2="300"  y2="900"/>
+                <line x1="420"  y1="0" x2="420"  y2="900"/>
+                <line x1="540"  y1="0" x2="540"  y2="900"/>
+                <line x1="660"  y1="0" x2="660"  y2="900"/>
+                <line x1="780"  y1="0" x2="780"  y2="900"/>
+                <line x1="900"  y1="0" x2="900"  y2="900"/>
+                <line x1="1020" y1="0" x2="1020" y2="900"/>
+                <line x1="1140" y1="0" x2="1140" y2="900"/>
+                <line x1="1260" y1="0" x2="1260" y2="900"/>
+                <line x1="1380" y1="0" x2="1380" y2="900"/>
+            </g>
+
+            <!-- ── RHUMB LINES — portolan chart style ── -->
+            <!-- Compass rose 1: Atlantic (240, 560) — primary -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.6" opacity="0.18">
+                <line x1="240" y1="560" x2="240"  y2="-800"/>
+                <line x1="240" y1="560" x2="240"  y2="2200"/>
+                <line x1="240" y1="560" x2="-1200" y2="560"/>
+                <line x1="240" y1="560" x2="2000"  y2="560"/>
+                <line x1="240" y1="560" x2="1800"  y2="-1120"/>
+                <line x1="240" y1="560" x2="1800"  y2="2240"/>
+                <line x1="240" y1="560" x2="-1320" y2="2240"/>
+                <line x1="240" y1="560" x2="-1320" y2="-1120"/>
+            </g>
+            <!-- Half-wind rhumb lines from CR1 -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.35" opacity="0.1">
+                <line x1="240" y1="560" x2="930"  y2="-800"/>
+                <line x1="240" y1="560" x2="-450" y2="-800"/>
+                <line x1="240" y1="560" x2="930"  y2="2200"/>
+                <line x1="240" y1="560" x2="-450" y2="2200"/>
+                <line x1="240" y1="560" x2="-1200" y2="-130"/>
+                <line x1="240" y1="560" x2="2000"  y2="-130"/>
+                <line x1="240" y1="560" x2="2000"  y2="1250"/>
+                <line x1="240" y1="560" x2="-1200" y2="1250"/>
+            </g>
+
+            <!-- Compass rose 2: Central Europe (840, 320) -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.5" opacity="0.12">
+                <line x1="840" y1="320" x2="840"  y2="-800"/>
+                <line x1="840" y1="320" x2="840"  y2="2200"/>
+                <line x1="840" y1="320" x2="-1200" y2="320"/>
+                <line x1="840" y1="320" x2="3000"  y2="320"/>
+                <line x1="840" y1="320" x2="2360"  y2="-800"/>
+                <line x1="840" y1="320" x2="-680"  y2="-800"/>
+                <line x1="840" y1="320" x2="2360"  y2="1440"/>
+                <line x1="840" y1="320" x2="-680"  y2="1440"/>
+            </g>
+
+            <!-- Compass rose 3: Eastern Med (1200, 640) -->
+            <g clip-path="url(#mapclip)" stroke="#C49235" stroke-width="0.4" opacity="0.1">
+                <line x1="1200" y1="640" x2="1200" y2="-800"/>
+                <line x1="1200" y1="640" x2="1200" y2="2200"/>
+                <line x1="1200" y1="640" x2="-600"  y2="640"/>
+                <line x1="1200" y1="640" x2="3200"  y2="640"/>
+                <line x1="1200" y1="640" x2="2760"  y2="-800"/>
+                <line x1="1200" y1="640" x2="-360"  y2="2080"/>
+                <line x1="1200" y1="640" x2="2760"  y2="2080"/>
+                <line x1="1200" y1="640" x2="-360"  y2="-800"/>
+            </g>
+
+            <!-- ── SIMPLIFIED LANDMASSES (Europe + N.Africa) ── -->
+            <!-- Iberian Peninsula -->
+            <path clip-path="url(#mapclip)"
+                d="M 30,590 Q 60,550 90,520 Q 120,500 150,480 Q 170,470 185,445 Q 200,415 210,395 Q 225,370 250,355 Q 280,340 310,355 Q 340,370 355,395 Q 375,425 365,460 Q 380,490 400,475 Q 425,455 450,455 Q 475,460 485,485 Q 490,510 475,535 Q 460,565 440,595 Q 415,625 385,645 Q 350,665 310,670 Q 270,675 240,655 Q 210,635 185,615 Q 155,595 120,580 Q 80,570 50,580 Z"
+                fill="rgba(196,146,53,0.06)" stroke="rgba(196,146,53,0.2)" stroke-width="0.8"/>
+
+            <!-- France -->
+            <path clip-path="url(#mapclip)"
+                d="M 350,355 Q 390,325 440,310 Q 490,295 540,310 Q 590,325 620,355 Q 650,385 645,420 Q 640,455 615,480 Q 585,510 555,530 Q 520,555 485,560 Q 450,565 415,545 Q 385,525 365,495 Q 340,460 345,425 Q 348,395 350,368 Z"
+                fill="rgba(196,146,53,0.06)" stroke="rgba(196,146,53,0.2)" stroke-width="0.8"/>
+
+            <!-- British Isles -->
+            <path clip-path="url(#mapclip)"
+                d="M 195,195 Q 235,170 275,175 Q 315,180 340,210 Q 365,240 355,275 Q 345,310 315,335 Q 280,358 245,350 Q 208,342 188,312 Q 168,280 178,248 Q 186,220 195,195 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+            <!-- Ireland -->
+            <path clip-path="url(#mapclip)"
+                d="M 140,220 Q 160,205 180,215 Q 198,228 195,250 Q 190,275 170,285 Q 148,292 135,272 Q 122,252 140,220 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.12)" stroke-width="0.6"/>
+
+            <!-- Central Europe (Germany/Austria/Switzerland) -->
+            <path clip-path="url(#mapclip)"
+                d="M 545,295 Q 590,270 645,262 Q 700,255 750,272 Q 800,290 830,320 Q 862,355 862,395 Q 862,440 838,468 Q 810,498 772,512 Q 730,524 690,515 Q 648,505 615,480 Q 580,452 562,420 Q 542,385 542,348 Q 542,318 545,295 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.18)" stroke-width="0.8"/>
+
+            <!-- Italian Peninsula -->
+            <path clip-path="url(#mapclip)"
+                d="M 540,460 Q 570,445 598,460 Q 620,475 632,505 Q 645,540 652,575 Q 660,610 665,645 Q 668,672 655,690 Q 640,708 618,700 Q 595,690 580,668 Q 560,642 548,612 Q 535,580 532,548 Q 530,515 535,488 Q 538,472 540,460 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+
+            <!-- Sicily -->
+            <path clip-path="url(#mapclip)"
+                d="M 610,705 Q 640,695 665,705 Q 685,718 682,740 Q 678,760 655,768 Q 630,774 610,758 Q 592,742 595,722 Q 598,710 610,705 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.12)" stroke-width="0.6"/>
+
+            <!-- Scandinavia -->
+            <path clip-path="url(#mapclip)"
+                d="M 498,28 Q 548,8 600,28 Q 650,48 668,88 Q 686,128 672,170 Q 658,215 632,252 Q 605,290 570,315 Q 535,340 500,332 Q 465,324 442,298 Q 418,268 420,232 Q 422,195 440,162 Q 460,125 475,88 Q 488,58 498,28 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+
+            <!-- Denmark -->
+            <path clip-path="url(#mapclip)"
+                d="M 550,312 Q 572,300 592,310 Q 610,322 608,345 Q 605,368 584,378 Q 560,386 542,370 Q 528,352 535,332 Q 540,318 550,312 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.12)" stroke-width="0.6"/>
+
+            <!-- Poland / Baltic region -->
+            <path clip-path="url(#mapclip)"
+                d="M 660,235 Q 720,215 790,220 Q 862,228 920,252 Q 972,278 995,318 Q 1016,358 1005,400 Q 992,442 958,462 Q 916,480 870,475 Q 820,468 775,448 Q 725,424 694,392 Q 660,358 648,318 Q 635,275 660,250 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+
+            <!-- Balkans / Greece -->
+            <path clip-path="url(#mapclip)"
+                d="M 720,390 Q 765,368 812,378 Q 858,390 885,420 Q 912,455 906,495 Q 898,538 868,562 Q 832,586 792,590 Q 750,592 718,568 Q 688,544 680,504 Q 672,462 690,430 Q 705,408 720,390 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+            <!-- Greek peninsula -->
+            <path clip-path="url(#mapclip)"
+                d="M 792,590 Q 810,580 828,590 Q 845,608 840,632 Q 834,658 812,668 Q 790,676 772,658 Q 756,638 762,615 Q 768,598 792,590 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.12)" stroke-width="0.6"/>
+
+            <!-- Eastern Europe / Russia (western portion) -->
+            <path clip-path="url(#mapclip)"
+                d="M 920,140 Q 1010,105 1110,120 Q 1205,138 1278,182 Q 1348,228 1372,285 Q 1396,345 1370,400 Q 1342,455 1290,478 Q 1232,500 1168,490 Q 1100,478 1042,450 Q 978,418 938,378 Q 896,335 888,285 Q 878,232 900,188 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.13)" stroke-width="0.7"/>
+
+            <!-- Turkey / Anatolia -->
+            <path clip-path="url(#mapclip)"
+                d="M 905,450 Q 960,428 1028,435 Q 1098,445 1158,468 Q 1218,492 1260,528 Q 1302,565 1308,608 Q 1312,648 1285,672 Q 1252,696 1205,702 Q 1148,706 1090,690 Q 1028,672 978,640 Q 925,608 900,568 Q 876,528 882,490 Q 888,462 905,450 Z"
+                fill="rgba(196,146,53,0.05)" stroke="rgba(196,146,53,0.15)" stroke-width="0.7"/>
+
+            <!-- Corsica -->
+            <path clip-path="url(#mapclip)"
+                d="M 538,552 Q 552,542 565,552 Q 577,565 573,582 Q 568,600 552,606 Q 536,610 526,596 Q 518,580 524,565 Z"
+                fill="rgba(196,146,53,0.04)" stroke="rgba(196,146,53,0.12)" stroke-width="0.5"/>
+
+            <!-- North Africa coast (landmass + Sahara zone) -->
+            <path clip-path="url(#mapclip)"
+                d="M 0,748 Q 120,730 240,740 Q 380,750 500,735 Q 620,720 740,730 Q 860,742 980,728 Q 1100,715 1220,728 Q 1340,740 1440,730 L 1440,900 L 0,900 Z"
+                fill="rgba(196,146,53,0.07)" stroke="rgba(196,146,53,0.22)" stroke-width="0.9"/>
+
+            <!-- ── COMPASS ROSES ── -->
+            <!-- CR1 — Atlantic (240, 560) — main -->
+            <g transform="translate(240,560)" clip-path="url(#mapclip)">
+                <circle r="62" fill="none" stroke="#C49235" stroke-width="0.7" opacity="0.35"/>
+                <circle r="54" fill="none" stroke="#C49235" stroke-width="0.3" opacity="0.2"/>
+                <!-- N point -->
+                <polygon points="0,-62 -6,-28 0,-20 6,-28" fill="#C49235" opacity="0.6"/>
+                <!-- S point -->
+                <polygon points="0,62 -5,28 0,20 5,28" fill="#C49235" opacity="0.4"/>
+                <!-- E point -->
+                <polygon points="62,0 28,-5 20,0 28,5" fill="#C49235" opacity="0.45"/>
+                <!-- W point -->
+                <polygon points="-62,0 -28,-5 -20,0 -28,5" fill="#C49235" opacity="0.4"/>
+                <!-- NE, SE, SW, NW (small diamonds) -->
+                <polygon points="0,-62 38,-38 32,-32 -6,-28" fill="#C49235" opacity="0.22" transform="rotate(45)"/>
+                <polygon points="0,-62 38,-38 32,-32 -6,-28" fill="#C49235" opacity="0.18" transform="rotate(135)"/>
+                <polygon points="0,-62 38,-38 32,-32 -6,-28" fill="#C49235" opacity="0.18" transform="rotate(-135)"/>
+                <polygon points="0,-62 38,-38 32,-32 -6,-28" fill="#C49235" opacity="0.2" transform="rotate(-45)"/>
+                <!-- Centre -->
+                <circle r="8"  fill="none" stroke="#C49235" stroke-width="0.8" opacity="0.5"/>
+                <circle r="3"  fill="#C49235" opacity="0.7"/>
+                <!-- N label -->
+                <text x="-4" y="-68" font-family="serif" font-size="10" fill="#C49235" opacity="0.65" font-weight="bold">N</text>
+                <text x="-4" y="78"  font-family="serif" font-size="8"  fill="#C49235" opacity="0.45">S</text>
+                <text x="68" y="4"   font-family="serif" font-size="8"  fill="#C49235" opacity="0.45">E</text>
+                <text x="-80" y="4"  font-family="serif" font-size="8"  fill="#C49235" opacity="0.45">W</text>
+                <!-- degree tick marks -->
+                <g stroke="#C49235" stroke-width="0.5" opacity="0.3">
+                    <line x1="0" y1="-54" x2="0" y2="-62"/>
+                    <line x1="0" y1="54"  x2="0" y2="62"/>
+                    <line x1="-54" y1="0" x2="-62" y2="0"/>
+                    <line x1="54"  y1="0" x2="62"  y2="0"/>
+                    <line x1="38"  y1="-38" x2="44" y2="-44"/>
+                    <line x1="38"  y1="38"  x2="44" y2="44"/>
+                    <line x1="-38" y1="-38" x2="-44" y2="-44"/>
+                    <line x1="-38" y1="38"  x2="-44" y2="44"/>
+                </g>
+            </g>
+
+            <!-- CR2 — Central Europe (840, 300) — medium -->
+            <g transform="translate(840,300)" clip-path="url(#mapclip)">
+                <circle r="38" fill="none" stroke="#C49235" stroke-width="0.5" opacity="0.25"/>
+                <polygon points="0,-38 -4,-17 0,-12 4,-17" fill="#C49235" opacity="0.45"/>
+                <polygon points="0,38 -3,17 0,12 3,17"  fill="#C49235" opacity="0.32"/>
+                <polygon points="38,0 17,-3 12,0 17,3"  fill="#C49235" opacity="0.35"/>
+                <polygon points="-38,0 -17,-3 -12,0 -17,3" fill="#C49235" opacity="0.3"/>
+                <polygon points="0,-38 22,-22 18,-18 -4,-17" fill="#C49235" opacity="0.15" transform="rotate(45)"/>
+                <polygon points="0,-38 22,-22 18,-18 -4,-17" fill="#C49235" opacity="0.12" transform="rotate(-45)"/>
+                <polygon points="0,-38 22,-22 18,-18 -4,-17" fill="#C49235" opacity="0.12" transform="rotate(135)"/>
+                <polygon points="0,-38 22,-22 18,-18 -4,-17" fill="#C49235" opacity="0.12" transform="rotate(-135)"/>
+                <circle r="5" fill="none" stroke="#C49235" stroke-width="0.6" opacity="0.4"/>
+                <circle r="2" fill="#C49235" opacity="0.55"/>
+                <text x="-3" y="-43" font-family="serif" font-size="7" fill="#C49235" opacity="0.45">N</text>
+            </g>
+
+            <!-- CR3 — Mediterranean (1100, 680) — small -->
+            <g transform="translate(1100,680)" clip-path="url(#mapclip)">
+                <circle r="24" fill="none" stroke="#C49235" stroke-width="0.4" opacity="0.2"/>
+                <polygon points="0,-24 -3,-10 0,-7 3,-10" fill="#C49235" opacity="0.38"/>
+                <polygon points="0,24 -2,10 0,7 2,10"  fill="#C49235" opacity="0.28"/>
+                <polygon points="24,0 10,-2 7,0 10,2"  fill="#C49235" opacity="0.30"/>
+                <polygon points="-24,0 -10,-2 -7,0 -10,2" fill="#C49235" opacity="0.25"/>
+                <circle r="3" fill="none" stroke="#C49235" stroke-width="0.5" opacity="0.32"/>
+                <circle r="1.2" fill="#C49235" opacity="0.45"/>
+            </g>
+
+            <!-- ── SEA LABELS (French, Napoleonic era) ── -->
+            <g font-family="'Cormorant Garamond',Georgia,serif" fill="#C49235" opacity="0.35" font-style="italic">
+                <text x="40"  y="640" font-size="11" letter-spacing="2" transform="rotate(-8,40,640)">OCÉAN ATLANTIQUE</text>
+                <text x="540" y="695" font-size="10" letter-spacing="1.5">MER MÉDITERRANÉE</text>
+                <text x="658" y="190" font-size="9"  letter-spacing="1" transform="rotate(5,658,190)">MER DU NORD</text>
+                <text x="980" y="530" font-size="8"  letter-spacing="1.5">MER NOIRE</text>
+                <text x="280" y="820" font-size="10" letter-spacing="4">AFRIQUE DU NORD</text>
+                <text x="1050" y="780" font-size="8" letter-spacing="2">LEVANT</text>
+                <text x="460" y="800" font-size="8"  letter-spacing="2">BARBARIE</text>
+            </g>
+
+            <!-- Region / country labels -->
+            <g font-family="'Barlow Condensed',sans-serif" fill="#C49235" opacity="0.22" font-size="8" letter-spacing="3" text-transform="uppercase">
+                <text x="175" y="490" transform="rotate(-5,175,490)">ESPAGNE</text>
+                <text x="460" y="405" transform="rotate(-3,460,405)">FRANCE</text>
+                <text x="675" y="352">ALLEMAGNE</text>
+                <text x="845" y="422">AUTRICHE</text>
+                <text x="755" y="455">ITALIE</text>
+                <text x="220" y="268">ANGLETERRE</text>
+                <text x="504" y="158">SUÈDE</text>
+                <text x="760" y="312">POLOGNE</text>
+                <text x="1020" y="290">RUSSIE</text>
+                <text x="970" y="550">OTTOMANS</text>
+            </g>
+
+            <!-- ── DECORATIVE BORDER ── -->
+            <rect x="6"  y="6"  width="1428" height="888" fill="none" stroke="#C49235" stroke-width="1.2" opacity="0.25"/>
+            <rect x="12" y="12" width="1416" height="876" fill="none" stroke="#C49235" stroke-width="0.4" opacity="0.15"/>
+            <!-- Corner ornaments -->
+            <g stroke="#C49235" stroke-width="0.6" opacity="0.25" fill="none">
+                <rect x="6"    y="6"    width="32" height="32"/>
+                <rect x="1402" y="6"    width="32" height="32"/>
+                <rect x="6"    y="862"  width="32" height="32"/>
+                <rect x="1402" y="862"  width="32" height="32"/>
+            </g>
+
+            <!-- ── SCALE BAR ── -->
+            <g transform="translate(1150,850)" clip-path="url(#mapclip)">
+                <line x1="0" y1="0" x2="160" y2="0" stroke="#C49235" stroke-width="0.7" opacity="0.35"/>
+                <line x1="0"   y1="-5" x2="0"   y2="5" stroke="#C49235" stroke-width="0.7" opacity="0.35"/>
+                <line x1="80"  y1="-4" x2="80"  y2="4" stroke="#C49235" stroke-width="0.5" opacity="0.3"/>
+                <line x1="160" y1="-5" x2="160" y2="5" stroke="#C49235" stroke-width="0.7" opacity="0.35"/>
+                <text x="0"  y="-10" font-family="serif" font-size="7" fill="#C49235" opacity="0.35" text-anchor="middle">0</text>
+                <text x="80" y="-10" font-family="serif" font-size="7" fill="#C49235" opacity="0.35" text-anchor="middle">500 km</text>
+                <text x="160" y="-10" font-family="serif" font-size="7" fill="#C49235" opacity="0.35" text-anchor="middle">1000 km</text>
+                <text x="80" y="16" font-family="'Cormorant Garamond',serif" font-size="7" fill="#C49235" opacity="0.3" text-anchor="middle" font-style="italic">Échelle approximative</text>
+            </g>
+
+        </svg>
+    </div>
+
     <!-- Grain texture overlay -->
     <div class="grain" aria-hidden="true"></div>
 
@@ -25,7 +335,7 @@
     <nav class="nav" id="nav">
         <a href="#hero" class="nav-logo">REVIVAL</a>
         <div class="nav-links">
-            <a href="#drop">Drop 01</a>
+            <a href="#drop">Shop</a>
             <a href="#heritage">Heritage</a>
             <a href="#story">Story</a>
             <a href="#notify">Notify Me</a>
@@ -40,62 +350,6 @@
          HERO
     ============================================================ -->
     <section class="hero" id="hero">
-
-        <!-- Antique map grid lines -->
-        <div class="map-grid" aria-hidden="true"></div>
-
-        <!-- Compass rose -->
-        <div class="compass-rose" aria-hidden="true">
-            <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                <!-- outer ring -->
-                <circle cx="110" cy="110" r="105" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-                <circle cx="110" cy="110" r="96"  fill="none" stroke="currentColor" stroke-width="0.25" opacity="0.25"/>
-                <!-- degree ticks -->
-                <g stroke="currentColor" stroke-width="0.5" opacity="0.3">
-                    <line x1="110" y1="5"   x2="110" y2="14"/>
-                    <line x1="110" y1="206" x2="110" y2="215"/>
-                    <line x1="5"   y1="110" x2="14"  y2="110"/>
-                    <line x1="206" y1="110" x2="215" y2="110"/>
-                    <line x1="42"  y1="27"  x2="47"  y2="35"/>
-                    <line x1="173" y1="27"  x2="168" y2="35"/>
-                    <line x1="42"  y1="193" x2="47"  y2="185"/>
-                    <line x1="173" y1="193" x2="168" y2="185"/>
-                </g>
-                <!-- 4 main points — large diamonds -->
-                <polygon points="110,8 103,95 110,110 117,95"  fill="currentColor" opacity="0.55"/>
-                <polygon points="110,212 103,125 110,110 117,125" fill="currentColor" opacity="0.35"/>
-                <polygon points="8,110 95,103 110,110 95,117"  fill="currentColor" opacity="0.45"/>
-                <polygon points="212,110 125,103 110,110 125,117" fill="currentColor" opacity="0.35"/>
-                <!-- 4 diagonal points — small diamonds -->
-                <polygon points="110,110 100,100 36,36 120,100"  fill="currentColor" opacity="0.2"/>
-                <polygon points="110,110 120,100 184,36 100,100" fill="currentColor" opacity="0.2"/>
-                <polygon points="110,110 100,120 36,184 120,120" fill="currentColor" opacity="0.15"/>
-                <polygon points="110,110 120,120 184,184 100,120" fill="currentColor" opacity="0.15"/>
-                <!-- centre circles -->
-                <circle cx="110" cy="110" r="14" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
-                <circle cx="110" cy="110" r="6"  fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
-                <circle cx="110" cy="110" r="2"  fill="currentColor" opacity="0.8"/>
-                <!-- Cardinal labels -->
-                <text x="110" y="3"   text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="9" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.7">N</text>
-                <text x="110" y="220" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="9" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.5">S</text>
-                <text x="218" y="114" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="9" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.5">E</text>
-                <text x="2"   y="114" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="9" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.5">W</text>
-            </svg>
-        </div>
-
-        <!-- Latitude / longitude arcs (decorative) -->
-        <div class="map-arcs" aria-hidden="true">
-            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <ellipse cx="200" cy="200" rx="195" ry="195" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.15"/>
-                <ellipse cx="200" cy="200" rx="195" ry="80"  fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.12"/>
-                <ellipse cx="200" cy="200" rx="195" ry="140" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.10"/>
-                <ellipse cx="200" cy="200" rx="80"  ry="195" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.12"/>
-                <ellipse cx="200" cy="200" rx="140" ry="195" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.10"/>
-                <line x1="5" y1="200" x2="395" y2="200" stroke="currentColor" stroke-width="0.4" opacity="0.15"/>
-                <line x1="200" y1="5" x2="200" y2="395" stroke="currentColor" stroke-width="0.4" opacity="0.15"/>
-            </svg>
-        </div>
-
         <div class="hero-bg-text" aria-hidden="true">REVIVAL</div>
         <div class="hero-vignette"></div>
 
@@ -113,8 +367,8 @@
             <div class="hero-shirt-stage">
                 <div class="shirt-glow"></div>
                 <img
-                    src="./assets/shirt.jpg"
-                    alt="Revival Napoleon Tee — SS25 Drop 01"
+                    src="./assets/shirt-both.png"
+                    alt="Revival Napoleon Tee — Front and Back"
                     class="hero-shirt"
                     loading="eager"
                 >
@@ -139,129 +393,65 @@
     </section>
 
     <!-- ============================================================
-         ANTIQUE DIVIDER
-    ============================================================ -->
-    <div class="antique-divider" aria-hidden="true">
-        <svg viewBox="0 0 800 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <line x1="0" y1="15" x2="320" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-            <path d="M 320 15 Q 340 5 360 15 Q 380 25 400 15 Q 420 5 440 15 Q 460 25 480 15" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
-            <!-- Fleur-de-lis centre -->
-            <text x="400" y="19" text-anchor="middle" font-size="14" fill="currentColor" opacity="0.55" font-family="serif">&#x269C;</text>
-            <line x1="480" y1="15" x2="800" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        </svg>
-    </div>
-
-    <!-- ============================================================
-         NAPOLEON HERITAGE GALLERY
+         NAPOLEON HERITAGE GALLERY — compact horizontal strip
     ============================================================ -->
     <section class="heritage" id="heritage">
-
-        <!-- Antique map background for this section -->
         <div class="section-map-bg" aria-hidden="true"></div>
 
         <div class="heritage-header">
-            <p class="heritage-label reveal-text">&mdash; The Inspiration</p>
-            <h2 class="heritage-title reveal-text">HERITAGE<br><em>OF EMPIRE</em></h2>
-            <p class="heritage-sub reveal-text">
-                Every Revival piece draws from the same fire that carried Napoleon across the Alps —
-                the belief that history belongs to those bold enough to make it.
-            </p>
+            <p class="heritage-label reveal-text">&mdash; The Inspiration Behind The Tee</p>
         </div>
 
-        <div class="heritage-grid">
+        <div class="heritage-strip">
 
-            <!-- Painting 01 — Napoleon Crossing the Alps (the painting on the shirt) -->
-            <div class="painting painting--large reveal-img">
-                <div class="painting-frame">
-                    <div class="frame-corner fc--tl"></div>
-                    <div class="frame-corner fc--tr"></div>
-                    <div class="frame-corner fc--bl"></div>
-                    <div class="frame-corner fc--br"></div>
-                    <img
-                        src="./assets/napoleon-alps.jpg"
-                        alt="Napoleon Crossing the Alps — Jacques-Louis David, 1801"
-                        class="painting-img ken-burns"
-                        loading="lazy"
-                    >
-                    <div class="painting-veil"></div>
-                </div>
-                <div class="painting-caption">
-                    <span class="painting-num">01</span>
-                    <div class="painting-info">
-                        <p class="painting-title">Napoleon Crossing the Alps</p>
-                        <p class="painting-meta">Jacques-Louis David &mdash; 1801</p>
+            <div class="strip-painting reveal-img">
+                <div class="strip-frame">
+                    <img src="./assets/napoleon-alps.jpg"
+                         alt="Napoleon Crossing the Alps"
+                         class="strip-img ken-burns" loading="lazy">
+                    <div class="strip-veil"></div>
+                    <div class="strip-caption">
+                        <span>01</span>
+                        <p>Crossing the Alps &mdash; David, 1801</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Painting 02 — Napoleon in His Study -->
-            <div class="painting reveal-img">
-                <div class="painting-frame">
-                    <div class="frame-corner fc--tl"></div>
-                    <div class="frame-corner fc--tr"></div>
-                    <div class="frame-corner fc--bl"></div>
-                    <div class="frame-corner fc--br"></div>
-                    <img
-                        src="./assets/napoleon-study.jpg"
-                        alt="Napoleon in His Study — Jacques-Louis David, 1812"
-                        class="painting-img ken-burns-reverse"
-                        loading="lazy"
-                    >
-                    <div class="painting-veil"></div>
-                </div>
-                <div class="painting-caption">
-                    <span class="painting-num">02</span>
-                    <div class="painting-info">
-                        <p class="painting-title">Napoleon in His Study</p>
-                        <p class="painting-meta">Jacques-Louis David &mdash; 1812</p>
+            <div class="strip-painting reveal-img">
+                <div class="strip-frame">
+                    <img src="./assets/napoleon-study.jpg"
+                         alt="Napoleon in His Study"
+                         class="strip-img ken-burns-reverse" loading="lazy">
+                    <div class="strip-veil"></div>
+                    <div class="strip-caption">
+                        <span>02</span>
+                        <p>In His Study &mdash; David, 1812</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Painting 03 — Alps detail crop (Napoleon's face + horse) -->
-            <div class="painting reveal-img">
-                <div class="painting-frame">
-                    <div class="frame-corner fc--tl"></div>
-                    <div class="frame-corner fc--tr"></div>
-                    <div class="frame-corner fc--bl"></div>
-                    <div class="frame-corner fc--br"></div>
-                    <img
-                        src="./assets/napoleon-alps.jpg"
-                        alt="Napoleon — detail"
-                        class="painting-img ken-burns-slow painting-crop--face"
-                        loading="lazy"
-                    >
-                    <div class="painting-veil"></div>
-                </div>
-                <div class="painting-caption">
-                    <span class="painting-num">03</span>
-                    <div class="painting-info">
-                        <p class="painting-title">The Conqueror</p>
-                        <p class="painting-meta">Detail &mdash; David, 1801</p>
+            <div class="strip-painting reveal-img">
+                <div class="strip-frame">
+                    <img src="./assets/napoleon-alps.jpg"
+                         alt="Napoleon — Detail"
+                         class="strip-img ken-burns-slow painting-crop--face" loading="lazy">
+                    <div class="strip-veil"></div>
+                    <div class="strip-caption">
+                        <span>03</span>
+                        <p>The Conqueror &mdash; Detail</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Painting 04 — Study detail crop (wide, lower body / uniform) -->
-            <div class="painting painting--wide reveal-img">
-                <div class="painting-frame">
-                    <div class="frame-corner fc--tl"></div>
-                    <div class="frame-corner fc--tr"></div>
-                    <div class="frame-corner fc--bl"></div>
-                    <div class="frame-corner fc--br"></div>
-                    <img
-                        src="./assets/napoleon-study.jpg"
-                        alt="Napoleon — Imperial Portrait"
-                        class="painting-img ken-burns painting-crop--wide"
-                        loading="lazy"
-                    >
-                    <div class="painting-veil"></div>
-                </div>
-                <div class="painting-caption">
-                    <span class="painting-num">04</span>
-                    <div class="painting-info">
-                        <p class="painting-title">The Emperor</p>
-                        <p class="painting-meta">Imperial Portrait &mdash; David, 1812</p>
+            <div class="strip-painting reveal-img">
+                <div class="strip-frame">
+                    <img src="./assets/napoleon-study.jpg"
+                         alt="Napoleon — Imperial Portrait"
+                         class="strip-img ken-burns painting-crop--wide" loading="lazy">
+                    <div class="strip-veil"></div>
+                    <div class="strip-caption">
+                        <span>04</span>
+                        <p>The Emperor &mdash; Full Portrait</p>
                     </div>
                 </div>
             </div>
@@ -270,22 +460,9 @@
     </section>
 
     <!-- ============================================================
-         ANTIQUE DIVIDER
-    ============================================================ -->
-    <div class="antique-divider" aria-hidden="true">
-        <svg viewBox="0 0 800 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <line x1="0" y1="15" x2="300" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-            <path d="M 300 15 L 340 8 L 360 15 L 380 8 L 400 15 L 420 8 L 440 15 L 460 8 L 500 15" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
-            <circle cx="400" cy="15" r="3" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
-            <line x1="500" y1="15" x2="800" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        </svg>
-    </div>
-
-    <!-- ============================================================
          PRODUCT SECTION
     ============================================================ -->
     <section class="product" id="drop">
-        <!-- Antique book shelf decoration -->
         <div class="book-decoration" aria-hidden="true">
             <div class="book book--1"></div>
             <div class="book book--2"></div>
@@ -299,14 +476,14 @@
             <div class="product-image-col">
                 <div class="product-image-wrapper js-tilt">
                     <img
-                        src="./assets/shirt.jpg"
-                        alt="Revival Napoleon Tee"
+                        src="./assets/shirt-both.png"
+                        alt="Revival Napoleon Tee — Front and Back"
                         class="product-img reveal-img"
                         loading="lazy"
                     >
                     <div class="product-img-overlay"></div>
                 </div>
-                <p class="product-index reveal-text">01 / Napoleon Tee — SS25</p>
+                <p class="product-index reveal-text">Front &amp; Back — Napoleon Tee SS25</p>
             </div>
 
             <div class="product-info-col">
@@ -386,31 +563,22 @@
             <span class="dot">&#8226;</span>
             <span>LIBERT&Eacute; &Eacute;GALIT&Eacute; FRATERNIT&Eacute;</span>
             <span class="dot">&#8226;</span>
-            <span>IMPOSSIBLE IS A WORD ONLY IN THE DICTIONARY OF FOOLS</span>
-            <span class="dot">&#8226;</span>
         </div>
     </div>
 
     <!-- ============================================================
-         NAPOLEON FEATURE — full painting, parallax, quote overlay
+         NAPOLEON FEATURE
     ============================================================ -->
     <section class="napoleon-feature">
         <div class="napoleon-painting js-parallax-bg">
-            <img
-                src="./assets/napoleon-alps.jpg"
-                alt="Napoleon Crossing the Alps"
-                class="napoleon-bg-img"
-                loading="lazy"
-            >
+            <img src="./assets/napoleon-alps.jpg" alt="Napoleon Crossing the Alps"
+                 class="napoleon-bg-img" loading="lazy">
         </div>
         <div class="napoleon-overlay"></div>
-
-        <!-- Antique corner ornaments on feature -->
         <div class="feature-corner fc-ornament--tl" aria-hidden="true"></div>
         <div class="feature-corner fc-ornament--tr" aria-hidden="true"></div>
         <div class="feature-corner fc-ornament--bl" aria-hidden="true"></div>
         <div class="feature-corner fc-ornament--br" aria-hidden="true"></div>
-
         <div class="napoleon-content">
             <p class="napoleon-label reveal-text">SS25 &mdash; Napoleon Tee</p>
             <blockquote class="napoleon-quote reveal-text">
@@ -422,24 +590,19 @@
     </section>
 
     <!-- ============================================================
-         MANIFESTO / STORY
+         MANIFESTO
     ============================================================ -->
     <section class="manifesto" id="story">
         <div class="manifesto-shirt-bg" aria-hidden="true">
             <img src="./assets/shirt.jpg" alt="" loading="lazy">
         </div>
-
-        <!-- Wax seal decoration -->
         <div class="wax-seal" aria-hidden="true">
             <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <!-- outer star/seal shape -->
                 <path d="M40 4 L43 18 L54 8 L50 22 L64 18 L57 30 L72 32 L62 42 L76 50 L63 54 L68 68 L55 64 L54 78 L40 70 L26 78 L25 64 L12 68 L17 54 L4 50 L18 42 L8 32 L23 30 L16 18 L30 22 L26 8 L37 18 Z" fill="currentColor" opacity="0.7"/>
                 <circle cx="40" cy="40" r="22" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
                 <text x="40" y="45" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="18" fill="rgba(255,255,255,0.6)" letter-spacing="2">R</text>
             </svg>
         </div>
-
-        <!-- Small antique compass decoration -->
         <div class="manifesto-compass" aria-hidden="true">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.3"/>
@@ -451,52 +614,35 @@
                 <circle cx="50" cy="50" r="1.5" fill="currentColor" opacity="0.7"/>
             </svg>
         </div>
-
         <div class="manifesto-content">
             <p class="manifesto-label reveal-text">&mdash; The Revival Creed</p>
-
             <blockquote class="manifesto-quote reveal-text">
-                &ldquo;IMPOSSIBLE IS A WORD<br>
-                ONLY IN THE DICTIONARY<br>
-                OF FOOLS&rdquo;
+                &ldquo;IMPOSSIBLE IS A WORD<br>ONLY IN THE DICTIONARY<br>OF FOOLS&rdquo;
             </blockquote>
-
             <div class="manifesto-body reveal-text">
-                <p>
-                    Revival is not a brand. It is a declaration.<br>
-                    We dress those who refuse to accept limits —<br>
-                    those who study history to make it.
-                </p>
-                <p>
-                    Every piece carries the weight of empire,<br>
-                    the courage of the revolutionary,<br>
-                    and the elegance of those who never doubted.
-                </p>
+                <p>Revival is not a brand. It is a declaration.<br>
+                   We dress those who refuse to accept limits —<br>
+                   those who study history to make it.</p>
+                <p>Every piece carries the weight of empire,<br>
+                   the courage of the revolutionary,<br>
+                   and the elegance of those who never doubted.</p>
             </div>
-
             <p class="manifesto-attr reveal-text">&mdash; Napoléon Bonaparte</p>
         </div>
     </section>
 
     <!-- ============================================================
-         NOTIFY SECTION
+         NOTIFY
     ============================================================ -->
     <section class="notify" id="notify">
-        <!-- Antique map background -->
         <div class="section-map-bg" aria-hidden="true"></div>
-
         <div class="notify-content reveal-block">
             <p class="notify-label">Next Drop</p>
             <h2 class="notify-title">DROP 02<br><span>COMING SOON</span></h2>
             <p class="notify-sub">Be the first to know when we drop next.</p>
             <form class="notify-form" id="notifyForm">
-                <input
-                    type="email"
-                    class="notify-input"
-                    placeholder="Enter your email"
-                    required
-                    aria-label="Email address for drop notification"
-                >
+                <input type="email" class="notify-input" placeholder="Enter your email"
+                       required aria-label="Email address">
                 <button type="submit" class="notify-btn">Notify Me</button>
             </form>
         </div>
@@ -510,9 +656,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo">REVIVAL</div>
-                    <p class="footer-tagline">
-                        Impossible is a word only in<br>the dictionary of fools.
-                    </p>
+                    <p class="footer-tagline">Impossible is a word only in<br>the dictionary of fools.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
@@ -541,7 +685,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2025 Revival. All Rights Reserved.</p>
                 <p class="footer-made">Made for those who refuse limits.</p>

@@ -95,6 +95,28 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* ================================================================
+   ANTIQUE MAP BACKGROUND — fixed full-screen SVG layer
+   ================================================================ */
+.map-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.09;
+    /* Safari: isolate so opacity is applied correctly */
+    isolation: isolate;
+}
+
+/* All page sections sit above the map */
+.nav, .hero, .heritage, .product, .marquee-strip,
+.napoleon-feature, .manifesto, .notify, .footer,
+.antique-divider, .grain { position: relative; z-index: 1; }
+.grain { z-index: 9000; }
+.cursor, .cursor-follower { z-index: 9999; }
+
+/* ================================================================
    CUSTOM CURSOR
    ================================================================ */
 .cursor {
@@ -480,7 +502,7 @@ button { cursor: pointer; font-family: inherit; }
    3. Use 'both' fill-mode so opacity starts at 0 before animation fires. */
 .hero-shirt-stage {
     position: relative;
-    width: clamp(240px, 32vw, 480px);
+    width: clamp(340px, 56vw, 720px);   /* wider for the front+back landscape image */
     margin: -16px 0 -10px;
     background-color: #1B1510;   /* ← explicit dark earth: white × this = invisible */
     animation: shirtReveal 1.4s var(--ease-expo) 0.9s both;
@@ -614,14 +636,13 @@ button { cursor: pointer; font-family: inherit; }
 .heritage {
     position: relative;
     background: var(--bg-mid);
-    padding: 100px 52px;
+    padding: 52px 52px 56px;
     overflow: hidden;
 }
 
 .heritage-header {
     text-align: center;
-    max-width: 680px;
-    margin: 0 auto 80px;
+    margin: 0 auto 32px;
 }
 
 .heritage-label {
@@ -656,48 +677,96 @@ button { cursor: pointer; font-family: inherit; }
     margin: 0 auto;
 }
 
-/* Mosaic-style grid */
-.heritage-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 16px;
+/* ── Compact horizontal strip ── */
+.heritage-strip {
+    display: flex;
+    gap: 6px;
+    height: 230px;
+    overflow: hidden;
 }
 
-.painting { display: flex; flex-direction: column; gap: 12px; }
-
-.painting--large {
-    grid-row: 1 / 3;
-    grid-column: 1 / 2;
+.strip-painting {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
 }
 
-.painting--wide {
-    grid-column: 2 / 4;
-}
-
-.painting-frame {
+.strip-frame {
     position: relative;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     background: var(--bg-dark);
-    flex: 1;
 }
 
-.painting--large .painting-frame { height: 100%; }
-
-/* Ken Burns animations */
-.painting-img {
+.strip-img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center center;
     display: block;
-    /* Sepia tint harmonises paintings with earth tone palette */
-    filter: sepia(0.3) contrast(1.05) brightness(0.92);
-    transition: filter 0.5s;
+    filter: sepia(0.3) contrast(1.05) brightness(0.88);
+    transition: filter 0.5s, transform 0.5s var(--ease-out);
+}
+
+.strip-frame:hover .strip-img {
+    filter: sepia(0.1) contrast(1.1) brightness(1.0);
+    transform: scale(1.04);
 }
 
 /* Different crop positions for repeated paintings — visually distinct */
-.painting-crop--face  { object-position: 55% 25%; }   /* zooms to horse + face */
-.painting-crop--wide  { object-position: 30% 15%; }   /* upper-body uniform detail */
+.painting-crop--face  { object-position: 55% 25%; }
+.painting-crop--wide  { object-position: 30% 15%; }
+
+.strip-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 45%,
+        rgba(9,6,3,0.82) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.strip-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.strip-caption span {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.35;
+    flex-shrink: 0;
+}
+
+.strip-caption p {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.75;
+    line-height: 1.4;
+    margin-bottom: 2px;
+}
+
+/* Painting frame corners — still used in other sections */
+.painting-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
 
 .ken-burns {
     animation: kenBurns1 20s ease-in-out infinite alternate;
@@ -722,56 +791,6 @@ button { cursor: pointer; font-family: inherit; }
     to   { transform: scale(1.08) translateX(3%)   translateY(-2%); }
 }
 
-.painting-frame:hover .painting-img {
-    filter: sepia(0.1) contrast(1.08) brightness(1.0);
-}
-
-/* Warm earth overlay on each painting */
-.painting-veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        transparent 50%,
-        rgba(9,6,3,0.7) 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Painting captions */
-.painting-caption {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 0 4px;
-}
-
-.painting-num {
-    font-family: var(--font-display);
-    font-size: 32px;
-    line-height: 1;
-    color: var(--gold);
-    opacity: 0.4;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-}
-
-.painting-title {
-    font-family: var(--font-ui);
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 0.12em;
-    color: var(--cream);
-    margin-bottom: 4px;
-}
-
-.painting-meta {
-    font-family: var(--font-serif);
-    font-size: 12px;
-    font-style: italic;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-}
 
 /* ================================================================
    PRODUCT SECTION
@@ -1374,16 +1393,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 @media (max-width: 900px) {
-    .heritage-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .painting--large {
-        grid-row: auto;
-        grid-column: 1 / 3;
-    }
-    .painting--wide {
-        grid-column: 1 / 3;
-    }
+    .heritage-strip { height: 190px; }
     .antique-divider { padding: 0 24px; }
 }
 
@@ -1391,14 +1401,12 @@ button { cursor: pointer; font-family: inherit; }
     .nav { padding: 18px 24px; }
     .nav-links { display: none; }
     .nav-cart { padding: 7px 12px; }
-    .hero-shirt-stage { width: 78vw; }
+    .hero-shirt-stage { width: 92vw; }
     .corner { display: none; }
     .compass-rose { width: 80px; bottom: 8%; right: 4%; }
     .map-arcs { width: 150px; }
-    .heritage { padding: 80px 24px; }
-    .heritage-grid { grid-template-columns: 1fr; }
-    .painting--large,
-    .painting--wide { grid-column: auto; grid-row: auto; }
+    .heritage { padding: 44px 16px 48px; }
+    .heritage-strip { height: 160px; gap: 4px; }
     .product-image-col { padding: 60px 24px; }
     .product-info-col  { padding: 48px 24px 72px; }
     .product-specs { grid-template-columns: 1fr 1fr; gap: 16px 24px; }
