@@ -170,13 +170,18 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .nav-logo {
-    font-family: var(--font-display);
-    font-size: 26px;
-    letter-spacing: 0.18em;
-    color: var(--parchment);
-    transition: color .3s;
+    display: flex;
+    align-items: center;
+    transition: opacity .3s;
 }
-.nav-logo:hover { color: var(--gold-light); }
+.nav-logo:hover { opacity: 0.82; }
+.nav-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    border-radius: 4px;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.7));
+}
 
 .nav-links { display: flex; gap: 44px; }
 
